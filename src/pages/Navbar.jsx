@@ -6,6 +6,8 @@ import { IoMail } from "react-icons/io5";
 import { VscGithub } from "react-icons/vsc";
 import { BsFillMoonFill } from "react-icons/bs";
 import classNames from "classnames";
+import { useDispatch, useSelector } from "react-redux";
+import { chooseTheme } from "../redux/themeSlice";
 
 const NavbarItems = [
   {
@@ -41,6 +43,7 @@ const Navbar = () => {
   const activeIndex = NavbarItems.findIndex(
     (item) => item.to === location.pathname
   );
+  const dispatch = useDispatch();
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
@@ -73,7 +76,8 @@ const Navbar = () => {
         <div className="  w-1 h-6 sm:h-8 md:h-14 lg:h-16 bg-white" />
         <button
           onClick={() => {
-            console.log("dark mode");
+            dispatch(chooseTheme());
+           
           }}
           className="bg-[#1f2836] flex items-center justify-center py-4 px-4  text-white font-bold rounded-2xl"
         >

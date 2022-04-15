@@ -7,11 +7,13 @@ import Project from "./pages/routes/Project";
 import Contact from "./pages/routes/Contact";
 import Github from "./pages/routes/Github";
 
-const App = () => {
-  const [darkMode, setDarkMode] = React.useState(false);
+import { useSelector } from "react-redux";
 
+const App = () => {
+  const darkMode = useSelector((state) => state.theme.dark);
+  console.log(darkMode);
   return (
-    <div className="dark font-SpaceGrotesk ">
+    <div className={darkMode ? "dark" : ""}>
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<Navbar />}>
