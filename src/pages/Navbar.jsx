@@ -38,6 +38,7 @@ const NavbarItems = [
     ),
   },
 ];
+
 const Navbar = () => {
   const location = useLocation();
   const activeIndex = NavbarItems.findIndex(
@@ -46,40 +47,43 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex flex-col min-h-screen justify-between">
-      <div className="font-Yellowtail text-[#188AEC] invisible sm:visible md:visible lg:visible sm:text-3xl md:text-5xl lg:text-7xl  ">
+    <div className="flex flex-col min-h-screen px-16 pt-6 pb-10 justify-between ">
+      <div className=" font-Yellowtail text-[#188AEC] invisible sm:visible md:visible lg:visible sm:text-3xl md:text-5xl lg:text-7xl  ">
         ilkayus<span className="text-[#EC4899]">.</span>
       </div>
       <div className=" pl-6 pr-12 flex  sm:ml-8 md:ml-16 lg:ml-24 ">
         <Outlet />
       </div>
-      <div className="bg-[#111726] mx-6 sm:mx-8 md:mx-9 lg:mx-11 w-auto min-w-fit py-3 px-5 flex items-center justify-between rounded-3xl">
+      <div className="bg-[#111726] mx-auto w-auto  py-3 px-5 flex items-center justify-between rounded-3xl">
         {NavbarItems.map((item, index) => (
-          <div
-            key={index}
-            className={classNames(
-              " bg-[#1f2836] flex items-center justify-center p-4  text-white font-bold rounded-2xl",
-              {
-                "navbar__item--active": index === activeIndex,
-                "navbar__item--size--large": [
-                  activeIndex - 1,
-                  activeIndex,
-                  activeIndex + 1,
-                ].includes(index),
-              }
-            )}
-          >
-            <NavLink to={item.to}>{item.content}</NavLink>
-          </div>
+          <NavLink to={item.to}>
+            <div className=" sm:px-2 md:px-4 lg:px-8">
+              <div
+                key={index}
+                className={classNames(
+                  " bg-[#1f2836] flex items-center justify-center p-4  text-white font-bold rounded-2xl",
+                  {
+                    "navbar__item--active": index === activeIndex,
+                    "navbar__item--size--large": [
+                      activeIndex - 1,
+                      activeIndex,
+                      activeIndex + 1,
+                    ].includes(index),
+                  }
+                )}
+              >
+                <div>{item.content}</div>
+              </div>
+            </div>
+          </NavLink>
         ))}
 
-        <div className="  w-1 h-6 sm:h-8 md:h-14 lg:h-16 bg-white" />
+        <div className=" w-1 h-6 sm:h-8 md:h-14 lg:h-16 bg-white" />
         <button
           onClick={() => {
             dispatch(chooseTheme());
-           
           }}
-          className="bg-[#1f2836] flex items-center justify-center py-4 px-4  text-white font-bold rounded-2xl"
+          className="bg-[#1f2836] flex items-center justify-center py-4 px-4 sm:mx-2 md:mx-4 lg:mx-8 text-white font-bold rounded-2xl"
         >
           <BsFillMoonFill className="text-xs sm:text-xl md:text-5xl lg:text-6xl" />
         </button>
