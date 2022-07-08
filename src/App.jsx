@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 
 const App = () => {
   const darkMode = useSelector((state) => state.theme.dark);
-  console.log(darkMode);
   return (
     <div className={darkMode ? "dark" : ""}>
       <BrowserRouter>
